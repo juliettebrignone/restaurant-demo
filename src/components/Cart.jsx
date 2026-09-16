@@ -1,7 +1,7 @@
 export default function Cart({ cart, onRemove, onCheckout }) {
   const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
 
-  const tax = subtotal * 0.10;
+  const tax = subtotal * 0.20;
   const total = subtotal + tax;
 
   return (
@@ -32,7 +32,7 @@ export default function Cart({ cart, onRemove, onCheckout }) {
           <span>€{subtotal.toFixed(2)}</span>
         </div>
         <div className="cart-totals-row">
-          <span>Tax (10%)</span>
+          <span>Tax (20%)</span>
           <span>€{tax.toFixed(2)}</span>
         </div>
         <div className="cart-totals-row total">
