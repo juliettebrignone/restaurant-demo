@@ -27,7 +27,7 @@ export default function App() {
           <span className="logo-crop">
             <img src={`${import.meta.env.BASE_URL}deliveroo-logo.png`} alt="Deliveroo" />
           </span>
-          <h1>roo<span style={{color:"#1a271f"}}>food</span></h1>
+          <h1>Deliveroo</h1>
           <span className="delivery-eta">
             <span className="eta-dot" />
             <span className="eta-icon">🛵</span>
