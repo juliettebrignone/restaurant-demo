@@ -11,20 +11,30 @@ export default function App() {
   const [showPayment, setShowPayment] = useState(false);
 
   function addToCart(dish) {
-    setCart([...cart, { ...dish, quantity: 1 }]);
+    setCart((prev) => {
+      const existing = prev.find((item) => item.id === dish.id);
+      if (existing) {
+        return prev.map((item) =>
+          item.id === dish.id ? { ...item, quantity: item.quantity + 1 } : item
+        );
+      }
+      return [...prev, { ...dish, quantity: 1 }];
+    });
   }
 
   function removeFromCart(id) {
-    setCart(cart.filter((item) => item.id === id));
+    setCart(cart.filter((item) => item.id !== id));
   }
 
-  const cartCount = cart.length;
+  const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <div className="app">
       <header className="app-header">
         <div style={{display:"flex",alignItems:"center",gap:"12px"}}>
-          <img src={`${import.meta.env.BASE_URL}deliveroo-logo.png`} alt="Deliveroo" height="36" />
+          <span className="logo-crop">
+            <img src={`${import.meta.env.BASE_URL}deliveroo-logo.png`} alt="Deliveroo" />
+          </span>
           <h1>roo<span style={{color:"#1a271f"}}>food</span></h1>
           <span className="delivery-eta">
             <span className="eta-dot" />
